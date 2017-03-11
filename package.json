@@ -1,0 +1,13 @@
+{
+  "name": "news-reader",
+  "version": "0.0.1-beta",
+  "description": "Accesible news reader",
+  "author": "Aaron Lenoir <info@aaronlenoir.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
