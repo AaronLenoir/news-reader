@@ -5,9 +5,12 @@
   "author": "Aaron Lenoir <info@aaronlenoir.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
