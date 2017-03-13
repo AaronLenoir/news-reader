@@ -1,0 +1,38 @@
+html
+  head
+    title= title
+    link(rel='stylesheet' href='style/main.css')
+  body
+    a(href='/')= 'Overzicht'
+    h1
+      span= title
+      span= '('
+      span(id='currentPage')
+      span= ' / '
+      span(id='totalPages')
+      span= ')'
+    div!= content
+
+    div
+      span='Bron: '
+      a(href=targetFeed.link)= 'De Standaard'
+
+    div
+      a(href='#' id='btnPreviousPage')= 'Previous page'
+    div
+      a(href='#' id='btnNextPage')= 'Next page'
+
+    script(src='scripts/pager.js')
+    script(src='scripts/read.js')
+    script.
+      (function (pager) {
+        var self = this;
+
+        self.handlePageChanged = function (event) {
+          console.log('Page changed: ' + event.currentPage + ' / ' + event.totalPages);
+          window.document.getElementById('currentPage').innerHTML = event.currentPage;
+          window.document.getElementById('totalPages').innerHTML = event.totalPages;
+        }
+
+        pager.init(!{JSON.stringify(nextFeed)}, !{JSON.stringify(previousFeed)}, self.handlePageChanged);
+      }(pager));
