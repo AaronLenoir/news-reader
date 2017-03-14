@@ -1,5 +1,7 @@
 // Read page code
 var read = (function (window, pager) {
+  'use strict';
+
   var self = this;
 
   self.bindEvents = function () {
