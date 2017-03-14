@@ -1,3 +1,5 @@
+'use strict';
+
 const cache = require('memory-cache');
 const readability = require('node-readability');
 
@@ -24,4 +26,3 @@ function read(uri, callback) {
 }
 
 module.exports = read;
-exports = read;

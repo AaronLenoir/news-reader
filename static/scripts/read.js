@@ -1,5 +1,5 @@
 // Read page code
-var read = (function (window, pager) {
+var read = (new function (window, pager) {
   'use strict';
 
   var self = this;

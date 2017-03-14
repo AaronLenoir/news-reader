@@ -1,26 +1,41 @@
 html
   head
     title= title
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous')
     link(rel='stylesheet' href='style/main.css')
   body
-    a(href='/')= 'Overzicht'
-    h1
-      span= title
-      span= '('
-      span(id='currentPage')
-      span= ' / '
-      span(id='totalPages')
-      span= ')'
-    div!= content
 
-    div
-      span='Bron: '
-      a(href=targetFeed.link)= 'De Standaard'
-
-    div
-      a(href='#' id='btnPreviousPage')= 'Previous page'
-    div
-      a(href='#' id='btnNextPage')= 'Next page'
+    div(class='container')
+      div(class='row')
+        div(class='col-md-2')
+        div(class='col-md-2')
+          a(href='/')= 'Overzicht'
+        div(class='col-md-6 text-right')
+          div
+            span='Bron: '
+            a(href=targetFeed.link target='_blank')= 'De Standaard'
+      div(class='row')
+        div(class='col-md-2')
+        div(class='col-md-8')
+          h1
+            span= title
+            span= ' ('
+            span(id='currentPage')
+            span= ' / '
+            span(id='totalPages')
+            span= ')'
+      div(class='row')
+        div(class='col-md-2 text-center')
+          div
+            a(href='#' id='btnPreviousPage' class='glyphicon glyphicon-arrow-left' title='Vorige pagina')
+        div(class='col-md-8')
+          div!= content
+        div(class='col-md-2 text-center')
+          div
+            a(href='#' id='btnNextPage' class='glyphicon glyphicon-arrow-right' title='Volgende pagina')
+      div(class='row')
+        div(class='col-md-12 text-center')
+          div(id='endOfArticle')!= '&#8226;'
 
     script(src='scripts/pager.js')
     script(src='scripts/read.js')
@@ -29,9 +44,13 @@ html
         var self = this;
 
         self.handlePageChanged = function (event) {
-          console.log('Page changed: ' + event.currentPage + ' / ' + event.totalPages);
           window.document.getElementById('currentPage').innerHTML = event.currentPage;
           window.document.getElementById('totalPages').innerHTML = event.totalPages;
+          if (event.currentPage === event.totalPages) {
+            window.document.getElementById('endOfArticle').classList.remove('hidden');
+          } else {
+            window.document.getElementById('endOfArticle').classList.add('hidden');
+          }
         }
 
         pager.init(!{JSON.stringify(nextFeed)}, !{JSON.stringify(previousFeed)}, self.handlePageChanged);

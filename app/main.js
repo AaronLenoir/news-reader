@@ -2,7 +2,7 @@
 
 const express = require('express');
 const parser = require('rss-parser');
-const readability = require('node-readability');
+const readArticle = require('./article-reader');
 const findFeedAndNeighbours = require('./feed-finder');
 
 // Constants
@@ -33,7 +33,7 @@ app.get('/read', function (req, res) {
     targetFeeds = findFeedAndNeighbours(parsed.feed.entries, guid);
 
     if (targetFeeds.targetFeed !== null) {
-      readability(targetFeeds.targetFeed.link, renderArticle);
+      readArticle(targetFeeds.targetFeed.link, renderArticle);
     }
   }
 

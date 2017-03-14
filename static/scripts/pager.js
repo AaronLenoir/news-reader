@@ -1,11 +1,14 @@
-var pager = (function (window) {
-  'user strict';
+var pager = new(function (window) {
+  'use strict';
 
   var self = this;
 
   self.currentPage = 1;
   self.pages = [];
-  self.maximumContentLength = 500;
+  self.maximumContentLength = 300;
+  self.nextFeed = null;
+  self.previousFeed = null;
+  self.pageChangedHandler = null;
 
   self.removeFigures = function () {
     var elements = window.document.getElementsByTagName('figure');
@@ -35,7 +38,8 @@ var pager = (function (window) {
     var children = self.findArticleBody().children;
     for (var i = 0; i < children.length; i++) {
       var child = children[i];
-      if (child.tagName.toUpperCase() === 'P') {
+      if (child.tagName.toUpperCase() === 'P' || child.tagName.toUpperCase() ===
+        'H1') {
         paragraphs.push(child);
       }
     }
@@ -60,7 +64,7 @@ var pager = (function (window) {
     };
 
     var totalContentLength = 0;
-    for (i = 0; i < paragraphs.length; i++) {
+    for (var i = 0; i < paragraphs.length; i++) {
       var paragraph = paragraphs[i];
       totalContentLength += self.getParagraphContentLength(paragraph);
 
@@ -90,10 +94,12 @@ var pager = (function (window) {
     var pages = [];
     var intros = self.findIntros();
 
-    pages.push({
-      nr: 0,
-      elements: intros
-    });
+    if (intros.length > 0) {
+      pages.push({
+        nr: 0,
+        elements: intros
+      });
+    }
 
     var pagesFromParagraphs = self.loadPagesFromParagraphs(pages.length);
     for (i = 0; i < pagesFromParagraphs.length; i++) {
@@ -127,10 +133,19 @@ var pager = (function (window) {
         self.showElements(elements);
       }
     }
+    if (self.pageChangedHandler !== null) {
+      self.pageChangedHandler({
+        currentPage: self.currentPage,
+        totalPages: self.pages.length
+      });
+    }
   };
 
   self.goToNextPage = function () {
     if (self.currentPage === self.pages.length) {
+      if (self.nextFeed !== null) {
+        window.document.location.href = '/read?guid=' + self.nextFeed.guid;
+      }
       return;
     }
 
@@ -140,6 +155,10 @@ var pager = (function (window) {
 
   self.goToPreviousPage = function () {
     if (self.currentPage === 1) {
+      if (self.previousFeed !== null) {
+        window.document.location.href = '/read?guid=' + self.previousFeed
+          .guid;
+      }
       return;
     }
 
@@ -147,19 +166,21 @@ var pager = (function (window) {
     self.showCurrentPage();
   };
 
-  self.init = function () {
+  self.init = function (nextFeed, previousFeed, pageChangedHandler) {
     self.removeFigures();
     self.loadPages();
+    self.nextFeed = nextFeed;
+    self.previousFeed = previousFeed;
+    if (pageChangedHandler) {
+      self.pageChangedHandler = pageChangedHandler;
+    }
 
     self.showCurrentPage();
-
-    console.log(pages);
   };
 
-  self.init();
-
   return {
+    init: self.init,
     nextPage: self.goToNextPage,
     previousPage: self.goToPreviousPage
   };
-}(window));
+})(window);

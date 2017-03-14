@@ -3,12 +3,16 @@
   "version": "0.0.1-beta",
   "description": "Accesible news reader",
   "author": "Aaron Lenoir <info@aaronlenoir.com>",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app/main.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "memory-cache": "^0.1.6",
+    "node-readability": "^2.2.0",
+    "pug": "^2.0.0-beta11",
+    "rss-parser": "^2.5.2"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

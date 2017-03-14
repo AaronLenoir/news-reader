@@ -1,0 +1,57 @@
+body {
+  font-family: serif;
+  font-size: xx-large;
+  line-height: 1.8em;
+
+  color: #EEE;
+  background-color: #333;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+a {
+  color: #EEE;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #FFF;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #EEE;
+}
+
+.glyphicon {
+  text-decoration: none;
+  font-size: 4em;
+}
+
+  .glyphicon:hover {
+    text-decoration: none;
+  }
+
+  .glyphicon:focus {
+    text-decoration: none;
+  }
+
+.list-group-item {
+  background-color: inherit;
+  text-decoration: none;
+  line-height: 2em;
+}
+
+.container {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
