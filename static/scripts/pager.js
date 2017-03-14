@@ -12,7 +12,7 @@ var pager = new(function (window) {
 
   self.removeFigures = function () {
     var elements = window.document.getElementsByTagName('figure');
-    for (var i = 0; i < elements.length; i++) {
+    for (var i = elements.length - 1; i >= 0; i--) {
       var element = elements[i];
       element.parentNode.removeChild(element);
     }
@@ -143,8 +143,9 @@ var pager = new(function (window) {
 
   self.goToNextPage = function () {
     if (self.currentPage === self.pages.length) {
-      if (self.nextFeed !== null) {
-        window.document.location.href = '/read?guid=' + self.nextFeed.guid;
+      if (self.previousFeed !== null) {
+        window.document.location.href = '/read?guid=' + self.previousFeed
+          .guid;
       }
       return;
     }
@@ -155,8 +156,8 @@ var pager = new(function (window) {
 
   self.goToPreviousPage = function () {
     if (self.currentPage === 1) {
-      if (self.previousFeed !== null) {
-        window.document.location.href = '/read?guid=' + self.previousFeed
+      if (self.nextFeed !== null) {
+        window.document.location.href = '/read?guid=' + self.nextFeed
           .guid;
       }
       return;

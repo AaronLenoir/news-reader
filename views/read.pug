@@ -7,16 +7,16 @@ html
 
     div(class='container')
       div(class='row')
-        div(class='col-md-2')
+        div(class='col-md-1')
         div(class='col-md-2')
           a(href='/')= 'Overzicht'
-        div(class='col-md-6 text-right')
+        div(class='col-md-8 text-right')
           div
             span='Bron: '
             a(href=targetFeed.link target='_blank')= 'De Standaard'
       div(class='row')
-        div(class='col-md-2')
-        div(class='col-md-8')
+        div(class='col-md-1')
+        div(class='col-md-10')
           h1
             span= title
             span= ' ('
@@ -25,12 +25,12 @@ html
             span(id='totalPages')
             span= ')'
       div(class='row')
-        div(class='col-md-2 text-center')
+        div(class='col-md-1 text-center')
           div
             a(href='#' id='btnPreviousPage' class='glyphicon glyphicon-arrow-left' title='Vorige pagina')
-        div(class='col-md-8')
+        div(class='col-md-10')
           div!= content
-        div(class='col-md-2 text-center')
+        div(class='col-md-1 text-center')
           div
             a(href='#' id='btnNextPage' class='glyphicon glyphicon-arrow-right' title='Volgende pagina')
       div(class='row')

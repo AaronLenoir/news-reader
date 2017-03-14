@@ -48,6 +48,10 @@ a:visited {
   line-height: 2em;
 }
 
+a.list-group-item {
+  color: #EEE;
+}
+
 .container {
   width: 100%;
 }

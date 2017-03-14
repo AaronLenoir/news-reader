@@ -6,16 +6,16 @@ html
   body
     div(class='container')
       div(class='row')
-        div(class='col-md-2')
+        div(class='col-md-1')
         div(class='col-md-2')
           h1= 'Sport'
-        div(class='col-md-6 text-right')
+        div(class='col-md-7 text-right')
           div
             span='Bron: '
             a(href='http://www.destandaard.be/nieuws/sport')= 'De Standaard'
       div(class='row')
-        div(class='col-md-2')
-        div(class='col-md-8')
+        div(class='col-md-1')
+        div(class='col-md-9')
           div(class='list-group')
             each entry in entries
               a(href= 'read?guid=' + entry.guid class='list-group-item')= entry.title
