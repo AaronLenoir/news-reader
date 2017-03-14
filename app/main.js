@@ -16,10 +16,15 @@ const app = express();
 app.set('view engine', 'pug');
 
 // Middleware
-app.use(express.static('static'));
+app.use(express.static('static', {
+  maxage: '2h'
+}));
 
 // Routes
 app.get('/read', function (req, res) {
+  // one week browser cache.
+  res.setHeader('Cache-Control', 'public, max-age=604800');
+
   parser.parseURL(FEED_URL, fetchArticle);
   var targetFeeds = null;
 
@@ -56,6 +61,9 @@ app.get('/read', function (req, res) {
 });
 
 app.get('/', function (req, res) {
+  // one week browser cache.
+  res.setHeader('Cache-Control', 'public, max-age=300');
+
   parser.parseURL(
     FEED_URL,
     function (err, parsed) {

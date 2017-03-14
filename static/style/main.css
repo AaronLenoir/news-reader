@@ -1,6 +1,6 @@
 body {
   font-family: serif;
-  font-size: xx-large;
+  font-size: 5em;
   line-height: 1.8em;
 
   color: #EEE;
@@ -8,10 +8,10 @@ body {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: bold;
 
-  margin-top: 2em;
+  margin-top: .5em;
   margin-bottom: 1em;
 }
 
@@ -31,7 +31,7 @@ a:visited {
 
 .glyphicon {
   text-decoration: none;
-  font-size: 4em;
+  font-size: 2.5em;
 }
 
   .glyphicon:hover {
